@@ -1,0 +1,10 @@
+Rails.application.routes.draw do
+resources :posts do
+resources :comments
+end
+
+resources :sessions, only: [:new, :create, :destroy]
+root to: "posts#index"
+  match 'signin',   to: 'sessions#new',     via: 'get'
+  match 'signout',  to: 'sessions#destroy', via: 'delete'
+end
